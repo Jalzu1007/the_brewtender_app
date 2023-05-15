@@ -43,23 +43,18 @@
     <!--Search Container and Search History-->
     <aside class="section is-small">
 
-    <!-- Search field and buttons code here -->
-      <div class="control">
-        <label class="radio">
-          <input type="radio" name="answer">
-           Cocktail
-        </label>
-
-        <label class="radio">
-          <input type="radio" name="answer">
-            Ingredient
-        </label>
-      </div>
+    
 
 <!-- Search history code here -->  
-   <div class="search-input"> <input class="input is-large is-focused is-info" type="text" placeholder="Enter Cocktail or Ingredient"> </div>
-    <div class="search-button"> <button class="button is-large is-info">Search</button> </div>
-     <div class="search-button"> <button class="button is-large is-info">Clear</button> </div>
+  <div class="search-input"> <input class="input is-large is-focused is-info" type="text" id="search-value" placeholder="Enter Cocktail or Ingredient"> </div>
+  <!-- Search field and buttons code here -->
+  <div class="control">
+    <label class="checkbox">
+      <input type="checkbox">Search based on Ingredients
+    </label>
+  </div>
+  <div class="search-button"> <button class="button is-large is-info" id="search-button">Search</button> </div>
+  <div class="search-button"> <button class="button is-large is-info">Clear</button> </div>
 </div>
 
 <!--Results Container-->

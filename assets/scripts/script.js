@@ -1,14 +1,11 @@
 //Global Variables
-
 var drinkList = [];
-
-
-
-
 
 function callApi() {
     var cocktailName = $('#search-value').val();
     var urlgeo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + cocktailName;
+    
+    
     $.ajax(urlgeo).done(function (response) {
         drinkList = response;
         console.log(drinkList);
@@ -167,4 +164,5 @@ function listResults() {
     }
 
 }
+
 $('#search-button').on('click', callApi);
