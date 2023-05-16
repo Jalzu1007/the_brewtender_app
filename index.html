@@ -12,12 +12,9 @@
     <link rel="icon" type="image/png" href="./assets/images/martini.png">
     <!--Link to CSS Style Sheet-->
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <!--Day.js Script-->
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"></script>
     <title>The Recipe Bar - The Ultimate Guide to Cocktail Creativity</title>
   </head>
+
   <body>
     <!--Header Container-->
     <header class="is-flex is-justify-content-center is-light has-background-gradient has-background-primary-dark card-header-title is-size-4 header-shadow">
@@ -28,40 +25,37 @@
     </header>
     
     <!--Search Form and Results Container-->
-      <section class="section is-medium has-text-centered">
-        
-
+  <section class="section is-medium has-text-centered">
     <!-- Input Search Container -->
-      <div class="columns is-centered search-input">
-        <label class="cocktail-search">Search for a Cocktail:</label>
+    <div class="columns is-centered search-input">
+      <label class="cocktail-search">Search for a Cocktail:</label>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-one-quarter">
+        <input class="input is-rounded is-focused is-one-quarter" type="text" id="search-value" placeholder="Enter Cocktail Name">
       </div>
-      <div class="columns is-centered">
-        <div class="column is-one-quarter">
-          <input class="input is-rounded is-focused is-one-quarter" type="text" id="search-value" placeholder="Enter Cocktail Name">
-        </div>
-      </div>
+    </div>
     <!-- Input Checkbox Container -->
-      <div class="control field">
-        <label class="checkbox">
-          <input type="checkbox" id="checkbox">  Search based on Ingredients
-        </label>
-      </div>
+    <div class="control field">
+      <label class="checkbox">
+        <input type="checkbox" id="checkbox">  Search based on Ingredients
+      </label>
+    </div>
     <!--Search Button Container-->
-      <div class="search-button">
-        <div class="control">
-          <button type="submit" id="search-button" class="button has-background-primary has-text-white is-rounded">Search</button>
-        </div>
+    <div class="search-button">
+      <div class="control">
+        <button type="submit" id="search-button" class="button has-background-primary has-text-white is-rounded">Search</button>
       </div>
-
+    </div>
       <!--Search History Container-->
-      <div class="search-history-container">
-        <label for="search history" class="history">Search History:</label>
-        <ul id="last-searches"></ul>
-      </div> 
-    </section>
-  
+    <div class="search-history-container">
+      <label for="search history" class="history">Search History:</label>
+      <ul id="last-searches"></ul>
+    </div> 
+  </section>
   <!--Results Container-->
       <div class="columns is-mobile is-multiline is-centered results-container"></div>
+
      <!--Footer Container-->
   <footer class="footer is-light has-background-gradient has-background-primary-dark footer-shadow">
     <div class="content has-text-centered">
