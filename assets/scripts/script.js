@@ -4,18 +4,44 @@ var drinkList = [];
 function callApi() {
     var cocktailName = $('#search-value').val();
     var urlgeo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + cocktailName;
-    
-    
-    $.ajax(urlgeo).done(function (response) {
-        drinkList = response;
-        console.log(drinkList);
-        listResults();
-    });
+    var urlingredient = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + cocktailName;
+
+
+    drinkList = [];
+    console.log(drinkList);
+
+    if ($("#checkbox").is(":checked")) {
+        $.ajax(urlingredient).done(function (response) {
+            var apiResults  = response;
+            
+            for (i=0;i<apiResults.drinks.length; i++) {
+                if (i<10) {
+                drinkList.push(apiResults.drinks[i]);
+                }
+            }
+            console.log(drinkList);
+            listResults();
+        });
+    } else {
+        $.ajax(urlgeo).done(function (response) {
+            var apiResults  = response;
+            
+            for (i=0;i<apiResults.drinks.length; i++) {
+                if (i<10) {
+                drinkList.push(apiResults.drinks[i]);
+                }
+            }
+            console.log(drinkList);
+            listResults();
+        });
+    }
 }
 
 function listResults() {
 
-    for (x = 0; x < drinkList.drinks.length; x++) {
+    cleaning();
+
+    for (x = 0; x < drinkList.length; x++) {
         var div = document.createElement('div');
         var ingredients = [];
 
@@ -51,7 +77,7 @@ function listResults() {
 
         var image = document.createElement('img');
         $('#cocktail-image' + x).append(image);
-        $(image).attr('src', drinkList.drinks[x].strDrinkThumb);
+        $(image).attr('src', drinkList[x].strDrinkThumb);
 
         var div = document.createElement('div');
         $('#div3'+x).append(div);
@@ -72,13 +98,13 @@ function listResults() {
         $('#div7'+x).append(p);
         $(p).attr('class', 'title is-4');
         $(p).attr('id', 'cocktail-name' + x);
-        $('#cocktail-name' + x).html(drinkList.drinks[x].strDrink);
+        $('#cocktail-name' + x).html(drinkList[x].strDrink);
 
         var p = document.createElement('p');
         $('#div7'+x).append(p);
         $(p).attr('class', 'subtitle is-6');
         $(p).attr('id', 'category' + x);
-        $('#category' + x).html(drinkList.drinks[x].strCategory);
+        $('#category' + x).html(drinkList[x].strCategory);
 
         var div = document.createElement('div');
         $('#div5'+x).append(div);
@@ -96,53 +122,53 @@ function listResults() {
         $(ul).attr('class', 'column is-multiline');
         $(ul).attr('id', 'ingredient-list' + x);
 
-        if (drinkList.drinks[x].strIngredient1 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient1);
+        if (drinkList[x].strIngredient1 !== null) {
+            ingredients.push(drinkList[x].strIngredient1);
         }
-        if (drinkList.drinks[x].strIngredient2 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient2);
+        if (drinkList[x].strIngredient2 !== null) {
+            ingredients.push(drinkList[x].strIngredient2);
         }
-        if (drinkList.drinks[x].strIngredient3 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient3);
+        if (drinkList[x].strIngredient3 !== null) {
+            ingredients.push(drinkList[x].strIngredient3);
         }
-        if (drinkList.drinks[x].strIngredient4 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient4);
+        if (drinkList[x].strIngredient4 !== null) {
+            ingredients.push(drinkList[x].strIngredient4);
         }
-        if (drinkList.drinks[x].strIngredient5 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient5);
+        if (drinkList[x].strIngredient5 !== null) {
+            ingredients.push(drinkList[x].strIngredient5);
         }
-        if (drinkList.drinks[x].strIngredient6 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient6);
+        if (drinkList[x].strIngredient6 !== null) {
+            ingredients.push(drinkList[x].strIngredient6);
         }
-        if (drinkList.drinks[x].strIngredient7 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient7);
+        if (drinkList[x].strIngredient7 !== null) {
+            ingredients.push(drinkList[x].strIngredient7);
         }
-        if (drinkList.drinks[x].strIngredient8 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient8);
+        if (drinkList[x].strIngredient8 !== null) {
+            ingredients.push(drinkList[x].strIngredient8);
         }
-        if (drinkList.drinks[x].strIngredient9 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient9);
+        if (drinkList[x].strIngredient9 !== null) {
+            ingredients.push(drinkList[x].strIngredient9);
         }
-        if (drinkList.drinks[x].strIngredient10 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient10);
+        if (drinkList[x].strIngredient10 !== null) {
+            ingredients.push(drinkList[x].strIngredient10);
         }
-        if (drinkList.drinks[x].strIngredient11 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient11);
+        if (drinkList[x].strIngredient11 !== null) {
+            ingredients.push(drinkList[x].strIngredient11);
         }
-        if (drinkList.drinks[x].strIngredient12 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient12);
+        if (drinkList[x].strIngredient12 !== null) {
+            ingredients.push(drinkList[x].strIngredient12);
         }
-        if (drinkList.drinks[x].strIngredient13 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient13);
+        if (drinkList[x].strIngredient13 !== null) {
+            ingredients.push(drinkList[x].strIngredient13);
         }
-        if (drinkList.drinks[x].strIngredient14 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient14);
+        if (drinkList[x].strIngredient14 !== null) {
+            ingredients.push(drinkList[x].strIngredient14);
         }
-        if (drinkList.drinks[x].strIngredient15 !== null) {
-            ingredients.push(drinkList.drinks[x].strIngredient15);
+        if (drinkList[x].strIngredient15 !== null) {
+            ingredients.push(drinkList[x].strIngredient15);
         }
 
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < ingredients.length; i++) {
             var ingredientList = document.createElement('il');
             
             if (ingredients[i] !== null) {
@@ -160,9 +186,19 @@ function listResults() {
         var p = document.createElement('p');
         $('#ingredients' + x).append(p);
         $(p).attr('id', 'instructions-steps' + x);
-        $('#instructions-steps'+x).html(drinkList.drinks[x].strInstructions);
+        $('#instructions-steps'+x).html(drinkList[x].strInstructions);
     }
 
+}
+
+function cleaning() {
+
+        for (i=0; i<10; i++) {
+            var node = document.getElementById('box'+i);
+            if (node) {
+            node.remove();
+            }
+        }
 }
 
 $('#search-button').on('click', callApi);
