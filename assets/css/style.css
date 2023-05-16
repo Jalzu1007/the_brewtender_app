@@ -14,6 +14,14 @@ header {
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
+.search-button {
+    margin-top: 10px;
+}
+
+.search-history-container {
+    padding-top: 50px;
+}
+
 #last-searches li:hover {
     cursor: pointer;
 }
