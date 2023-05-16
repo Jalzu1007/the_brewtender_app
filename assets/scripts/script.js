@@ -46,18 +46,18 @@ function listResults() {
         var ingredients = [];
 
         $('.results-container').append(div);
-        $(div).attr('class', 'column');
+        $(div).attr('class', 'column is-one-quarter is-narrow');
         $(div).attr('id', 'box' + x);
 
 
         var div = document.createElement('div');
         $('#box' + x).append(div);
-        $(div).attr('class', 'column is-multiline');
+        $(div).attr('class', 'column is-narrow');
         $(div).attr('id', 'div1'+x);
 
         var div = document.createElement('div');
         $('#div1'+x).append(div);
-        $(div).attr('class', 'column is-one-fifth');
+        $(div).attr('class', 'column is-narrow');
         $(div).attr('id', 'div2'+x);
 
         var div = document.createElement('div');
@@ -108,18 +108,18 @@ function listResults() {
 
         var div = document.createElement('div');
         $('#div5'+x).append(div);
-        $(div).attr('class', 'column');
+        $(div).attr('class', 'column is-narrow');
         $(div).attr('id', 'ingredients' + x);
 
         var p = document.createElement('p');
         $('#ingredients' + x).append(p);
-        $(p).attr('class', 'column is-multiline');
+        $(p).attr('class', 'column is-narrow is-multiline');
         $(p).attr('id', 'ingredient-tile' + x);
         $('#ingredient-tile' + x).html('Ingredients');
 
         var ul = document.createElement('ul');
         $('#ingredients' + x).append(ul);
-        $(ul).attr('class', 'column is-multiline');
+        $(ul).attr('class', 'column is-narrow is-multiline');
         $(ul).attr('id', 'ingredient-list' + x);
 
         if (drinkList[x].strIngredient1 !== null) {
