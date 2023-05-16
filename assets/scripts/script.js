@@ -1,14 +1,65 @@
 //Global Variables
+  
+//function that displays the last searches when the page refreshes to the HTML
+$(document).ready(function() {
+    displayLastSearches();
+  });
+
+//function to save the user input to local storage
+function saveSearch(searchValue) {
+    var searches = localStorage.getItem('searches');
+    if (searches) {
+      searches = JSON.parse(searches);
+    } else {
+      searches = [];
+    }
+    searches.push(searchValue);
+    localStorage.setItem('searches', JSON.stringify(searches));
+  }
+  
+  //function to retrieve and display last searches on the HTML
+  function displayLastSearches() {
+    var searches = localStorage.getItem('searches');
+    if (searches) {
+      searches = JSON.parse(searches);
+      var ul = document.getElementById('last-searches');
+      ul.innerHTML = ''; 
+  
+      for (var i = searches.length - 1; i >= 0; i--) {
+        var li = document.createElement('li');
+        li.textContent = searches[i];
+        li.addEventListener('click', performSearch);
+        ul.appendChild(li);
+      }
+        // Display the last searches horizontally
+        ul.style.display = 'flex';
+        ul.style.flexWrap = 'nowrap';
+        ul.style.overflowX = 'auto';
+        ul.style.justifyContent = 'space-evenly';
+    }
+  }
+  //function for li to click on
+  function performSearch(event) {
+    var searchValue = event.target.textContent;
+    $('#search-value').val(searchValue);
+    callApi();
+  }
+  
 var drinkList = [];
 
 function callApi() {
+
+    //function to save the search value before making the api call
+    var cocktailName = $('#search-value').val();
+    saveSearch(cocktailName);
+
     var cocktailName = $('#search-value').val();
     var urlgeo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + cocktailName;
     var urlingredient = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + cocktailName;
-
-
+    
     drinkList = [];
     console.log(drinkList);
+    displayLastSearches();
 
     if ($("#checkbox").is(":checked")) {
         $.ajax(urlingredient).done(function (response) {
@@ -20,6 +71,7 @@ function callApi() {
                 }
             }
             console.log(drinkList);
+            //updates last search display from local storage
             listResults();
         });
     } else {
@@ -33,6 +85,8 @@ function callApi() {
             }
             console.log(drinkList);
             listResults();
+            //display last search results on search button click to the HTML
+            displayLastSearches();
         });
     }
 }
