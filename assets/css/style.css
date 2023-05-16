@@ -12,30 +12,12 @@ header {
 
 .header-shadow {
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-  }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  .footer-shadow {
+#last-searches li:hover {
+    cursor: pointer;
+}
+  
+.footer-shadow {
     box-shadow: 0px -10px 10px -10px rgba(0, 0, 0, 0.75);
-  }
+}
