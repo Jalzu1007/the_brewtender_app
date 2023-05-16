@@ -5,51 +5,69 @@ $(document).ready(function() {
     displayLastSearches();
   });
 
+//empty array to hold the repeat searches
+  var uniqueSearches = [];
+
 //function to save the user input to local storage
 function saveSearch(searchValue) {
-    var searches = localStorage.getItem('searches');
-    if (searches) {
-      searches = JSON.parse(searches);
-    } else {
-      searches = [];
-    }
-    searches.push(searchValue);
-    localStorage.setItem('searches', JSON.stringify(searches));
+  if (!uniqueSearches.includes(searchValue)) {
+    uniqueSearches.push(searchValue);
+    localStorage.setItem('searches', JSON.stringify(uniqueSearches));
   }
+}
   
-  //function to retrieve and display last searches on the HTML
-  function displayLastSearches() {
+//function to retrieve and display last searches on the HTML
+function displayLastSearches() {
     var searches = localStorage.getItem('searches');
     if (searches) {
-      searches = JSON.parse(searches);
+      uniqueSearches = JSON.parse(searches);
+  
       var ul = document.getElementById('last-searches');
-      ul.innerHTML = ''; 
+      ul.innerHTML = ''; // Clear existing content
   
-      for (var i = searches.length - 1; i >= 0; i--) {
+      var count = Math.min(4, uniqueSearches.length); // Get the minimum value between 4 and the number of searches
+    
+      // added hover color to text for latest searches
+      for (var i = uniqueSearches.length - 1; i >= uniqueSearches.length - count; i--) {
         var li = document.createElement('li');
-        li.textContent = searches[i];
+        li.textContent = uniqueSearches[i];
         li.addEventListener('click', performSearch);
+        li.classList.add('hovered');
         ul.appendChild(li);
+      
+        li.addEventListener('mouseover', function() {
+          this.classList.add('has-text-primary-dark');
+        });
+      
+        li.addEventListener('mouseout', function() {
+          this.classList.remove('has-text-primary-dark');
+        });
       }
-        // Display the last searches horizontally
-        ul.style.display = 'flex';
-        ul.style.flexWrap = 'nowrap';
-        ul.style.overflowX = 'auto';
-        ul.style.justifyContent = 'space-evenly';
+      
+      // Display the last searches horizontally
+      ul.style.display = 'flex';
+      ul.style.flexWrap = 'nowrap';
+      ul.style.overflowX = 'auto';
+      ul.style.justifyContent = 'space-evenly';
     }
-  }
-  //function for li to click on
-  function performSearch(event) {
+    else {
+      var ul = document.getElementById('last-searches');
+      ul.innerHTML = ''; // Clear existing content
+    }
+}
+  
+//function for li to click on
+function performSearch(event) {
     var searchValue = event.target.textContent;
     $('#search-value').val(searchValue);
     callApi();
-  }
+}
   
 var drinkList = [];
 
 function callApi() {
 
-    //function to save the search value before making the api call
+    //save the search value before making the api call
     var cocktailName = $('#search-value').val();
     saveSearch(cocktailName);
 
@@ -85,6 +103,7 @@ function callApi() {
             }
             console.log(drinkList);
             listResults();
+
             //display last search results on search button click to the HTML
             displayLastSearches();
         });
