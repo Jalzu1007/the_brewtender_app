@@ -17,7 +17,7 @@
 
   <body>
     <!--Header Container-->
-    <header class="is-flex is-justify-content-center is-light has-background-gradient has-background-primary-dark card-header-title is-size-4 header-shadow">
+    <header class="is-flex is-justify-content-center is-light has-background-gradient card-header-title is-size-4 header-shadow">
       <div class="hero-title has-text-centered">
         <h1 class="is-size-1 has-text-white">The Recipe Bar</h2>
         <h2 class="hero-subtitle has-text-white">"The Ultimate Guide to Cocktail Creativity"</h2>
@@ -27,12 +27,13 @@
     <!--Search Form and Results Container-->
   <section class="section is-medium has-text-centered">
     <!-- Input Search Container -->
-    <div class="columns is-centered search-input">
-      <label class="cocktail-search">Search for a Cocktail:</label>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-one-quarter">
-        <input class="input is-rounded is-focused is-one-quarter" type="text" id="search-value" placeholder="Enter Cocktail Name">
+      <div class="columns is-centered search-input">
+        <label class="cocktail-search">Search for a Cocktail:</label>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-one-quarter">
+          <input class="input has-text-centered is-rounded" type="text" id="search-value" placeholder="Enter Cocktail Name">
+        </div>
       </div>
     </div>
     <!-- Input Checkbox Container -->
@@ -42,22 +43,23 @@
       </label>
     </div>
     <!--Search Button Container-->
-    <div class="search-button">
-      <div class="control">
-        <button type="submit" id="search-button" class="button has-background-primary has-text-white is-rounded">Search</button>
+      <div class="search-button">
+        <div class="control">
+          <button type="submit" id="search-button" class="button has-text-white is-rounded">Search</button>
+        </div>
       </div>
     </div>
       <!--Search History Container-->
-    <div class="search-history-container">
-      <label for="search history" class="history">Search History:</label>
-      <ul id="last-searches"></ul>
-    </div> 
-  </section>
+      <div>
+        <label class="history">Search History:</label>
+        <ul class="columns is-multiline is-centered" id="last-searches"></ul>
+      </div> 
+    </section>
   <!--Results Container-->
       <div class="columns is-mobile is-multiline is-centered results-container"></div>
 
      <!--Footer Container-->
-  <footer class="footer is-light has-background-gradient has-background-primary-dark footer-shadow">
+  <footer class="column is-narrow footer-shadow it-has-text-centered is-flex-align-items-flex-end mt-auto">
     <div class="content has-text-centered">
       <p class="has-text-white">
         &copy; 2023 <strong class="has-text-white">The Recipe Bar</strong> by <a href="https://github.com/jimen8930/" target="_blank" class="has-text-white">Elizabeth</a>,<a href="https://github.com/cijoshtc/" target="_blank" class="has-text-white"> Josh</a>,<a href="https://github.com/lavarbrihm56/" target="_blank" class="has-text-white"> Lavar</a>,<a href="https://github.com/alvarezrdk/" target="_blank" class="has-text-white"> Ruben</a>, and<a href="https://github.com/Jalzu1007/" target="_blank" class="has-text-white"> Jose</a>. The source code is<a href="./LICENSE" target="_blank" class="has-text-white"> licensed by MIT</a>.
