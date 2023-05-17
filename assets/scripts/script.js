@@ -59,7 +59,7 @@ function displayLastSearches() {
 
 function callApi() {
 
-    //function to save the search value before making the api call
+    //save the search value before making the api call
     var cocktailName = $('#search-value').val();
     saveSearch(cocktailName);
 
@@ -95,6 +95,7 @@ function callApi() {
             }
             console.log(drinkList);
             listResults();
+
             //display last search results on search button click to the HTML
             displayLastSearches();
         });
