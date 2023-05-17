@@ -1,51 +1,61 @@
 //Global Variables
-  
+var drinkList = [];
+var uniqueSearches = [];
+
+
 //function that displays the last searches when the page refreshes to the HTML
 $(document).ready(function() {
     displayLastSearches();
   });
 
-//function to save the user input to local storage
+  //function to save the user input to local storage
 function saveSearch(searchValue) {
-    var searches = localStorage.getItem('searches');
-    if (searches) {
-      searches = JSON.parse(searches);
-    } else {
-      searches = [];
+    if (!uniqueSearches.includes(searchValue)) {
+      uniqueSearches.push(searchValue);
+      localStorage.setItem('searches', JSON.stringify(uniqueSearches));
     }
-    searches.push(searchValue);
-    localStorage.setItem('searches', JSON.stringify(searches));
   }
-  
-  //function to retrieve and display last searches on the HTML
-  function displayLastSearches() {
+
+//function to retrieve and display last searches on the HTML
+function displayLastSearches() {
     var searches = localStorage.getItem('searches');
     if (searches) {
-      searches = JSON.parse(searches);
-      var ul = document.getElementById('last-searches');
-      ul.innerHTML = ''; 
+      uniqueSearches = JSON.parse(searches);
   
-      for (var i = searches.length - 1; i >= 0; i--) {
-        var li = document.createElement('li');
-        li.textContent = searches[i];
-        li.addEventListener('click', performSearch);
-        ul.appendChild(li);
+      var div = document.getElementById('last-searches');
+      div.innerHTML = ''; // Clear existing content
+  
+      var count = Math.min(4, uniqueSearches.length); // Get the minimum value between 4 and the number of searches
+    
+      // added hover color to text for latest searches
+      for (var i = uniqueSearches.length - 1; i >= uniqueSearches.length - count; i--) {
+        var p = document.createElement('p');
+        p.textContent = uniqueSearches[i];
+        p.addEventListener('click', performSearch);
+        p.classList.add('hovered');
+        div.appendChild(p);
+        $(p).attr('class', 'column is-narrow');
+      
+        p.addEventListener('mouseover', function() {
+          this.classList.add('has-text-primary-dark');
+        });
+      
+        p.addEventListener('mouseout', function() {
+          this.classList.remove('has-text-primary-dark');
+        });
       }
-        // Display the last searches horizontally
-        ul.style.display = 'flex';
-        ul.style.flexWrap = 'nowrap';
-        ul.style.overflowX = 'auto';
-        ul.style.justifyContent = 'space-evenly';
+    } else {
+      var div = document.getElementById('last-searches');
+      div.innerHTML = ''; // Clear existing content
     }
-  }
-  //function for li to click on
+}
+
+//function for li to click on
   function performSearch(event) {
     var searchValue = event.target.textContent;
     $('#search-value').val(searchValue);
     callApi();
   }
-  
-var drinkList = [];
 
 function callApi() {
 
@@ -169,80 +179,58 @@ function listResults() {
         $('#ingredients' + x).append(p);
         $(p).attr('class', 'column is-narrow is-multiline');
         $(p).attr('id', 'ingredient-tile' + x);
-        $('#ingredient-tile' + x).html('Ingredients');
 
         var ul = document.createElement('ul');
         $('#ingredients' + x).append(ul);
         $(ul).attr('class', 'column is-narrow is-multiline');
         $(ul).attr('id', 'ingredient-list' + x);
 
-        if (drinkList[x].strIngredient1 !== null) {
+        if ($("#checkbox").is(":checked")) {
+            $('#ingredient-tile' + x).html('');
+        }   else {
+            $('#ingredient-tile' + x).html('Ingredients');
+        }
+        var ul = document.createElement('ul');
+        $('#ingredients' + x).append(ul);
+        $(ul).attr('class', 'column is-narrow is-multiline');
+        $(ul).attr('id', 'ingredient-list' + x);
+
+        if ($("#checkbox").is(":checked")) {
+            //No ingredients 
+        }   else {
             ingredients.push(drinkList[x].strIngredient1);
-        }
-        if (drinkList[x].strIngredient2 !== null) {
             ingredients.push(drinkList[x].strIngredient2);
-        }
-        if (drinkList[x].strIngredient3 !== null) {
             ingredients.push(drinkList[x].strIngredient3);
-        }
-        if (drinkList[x].strIngredient4 !== null) {
             ingredients.push(drinkList[x].strIngredient4);
-        }
-        if (drinkList[x].strIngredient5 !== null) {
             ingredients.push(drinkList[x].strIngredient5);
-        }
-        if (drinkList[x].strIngredient6 !== null) {
             ingredients.push(drinkList[x].strIngredient6);
-        }
-        if (drinkList[x].strIngredient7 !== null) {
             ingredients.push(drinkList[x].strIngredient7);
-        }
-        if (drinkList[x].strIngredient8 !== null) {
             ingredients.push(drinkList[x].strIngredient8);
-        }
-        if (drinkList[x].strIngredient9 !== null) {
             ingredients.push(drinkList[x].strIngredient9);
-        }
-        if (drinkList[x].strIngredient10 !== null) {
             ingredients.push(drinkList[x].strIngredient10);
-        }
-        if (drinkList[x].strIngredient11 !== null) {
             ingredients.push(drinkList[x].strIngredient11);
-        }
-        if (drinkList[x].strIngredient12 !== null) {
             ingredients.push(drinkList[x].strIngredient12);
-        }
-        if (drinkList[x].strIngredient13 !== null) {
             ingredients.push(drinkList[x].strIngredient13);
-        }
-        if (drinkList[x].strIngredient14 !== null) {
             ingredients.push(drinkList[x].strIngredient14);
-        }
-        if (drinkList[x].strIngredient15 !== null) {
             ingredients.push(drinkList[x].strIngredient15);
-        }
-
-        for (i = 0; i < ingredients.length; i++) {
-            var ingredientList = document.createElement('il');
-            
-            if (ingredients[i] !== null) {
-            $('#ingredient-list'+x).append(ingredientList);
-            $(ingredientList).attr('id', 'ing' + x + i);
-            $('#ing' + x + i).html(ingredients[i]+', ');
+        
+            for (i = 0; i < ingredients.length; i++) {
+                var ingredientList = document.createElement('il');
+                
+                if (ingredients[i] !== null) {
+                $('#ingredient-list'+x).append(ingredientList);
+                $(ingredientList).attr('id', 'ing' + x + i);
+                $('#ing' + x + i).html(ingredients[i]+', ');
+                }
             }
+
+
+            var p = document.createElement('p');
+            $('#ingredients' + x).append(p);
+            $(p).attr('id', 'instructions-steps' + x);
+            $('#instructions-steps'+x).html(drinkList[x].strInstructions);
         }
-
-        var p = document.createElement('p');
-        $('#ingredients' + x).append(p);
-        $(p).attr('id', 'instructions' + x);
-        $('#ingredient-tile' + x).html('Ingredients');
-
-        var p = document.createElement('p');
-        $('#ingredients' + x).append(p);
-        $(p).attr('id', 'instructions-steps' + x);
-        $('#instructions-steps'+x).html(drinkList[x].strInstructions);
     }
-
 }
 
 function cleaning() {
