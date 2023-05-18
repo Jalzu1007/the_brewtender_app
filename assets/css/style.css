@@ -23,18 +23,16 @@ header {
 
 #search-button {
     background-color:  #7C2529;
-    
-        margin-bottom: 40px; 
-      
+    margin-bottom: 10px;
 }
 
 .history {
-    margin-top: 40px; 
-    
-  }
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 
 #jokes {
-    margin-top:50px;
+    margin: top 20;px;
 }
 
 .last-searches:hover {
