@@ -3,17 +3,16 @@
 }
 
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     background-color: whitesmoke;
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 header {
-    padding: 32px;
+    max-height: 190px;
 }
 
 .header-shadow {
@@ -38,9 +37,9 @@ header {
     margin-top:50px;
 }
 
-
-#last-searches li:hover {
+.last-searches:hover {
     cursor: pointer;
+    color:#7C2529;
 }
 
 .footer {
