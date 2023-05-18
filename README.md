@@ -49,7 +49,7 @@ https://jalzu1007.github.io/the_recipe_bar/
 
 Screen-share video of the The Recipe Bar Application:
 
-[![Video Title](https://img.youtube.com/vi/eqVok_eBs3k/0.jpg)](https://www.youtube.com/watch?v=eqVok_eBs3k)
+[![the_recipe_bar](https://img.youtube.com/vi/eqVok_eBs3k/0.jpg)](https://www.youtube.com/watch?v=eqVok_eBs3k)
 
 ## Credits
 
@@ -90,7 +90,7 @@ I used the following third-party assets in this project:
 
 MIT License
 
-Copyright (c) 2023 ALL ACCESS
+Copyright (c) 2023 The Recipe Bar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
