@@ -9,11 +9,16 @@ $(document).ready(function() {
 
   //function to save the user input to local storage
 function saveSearch(searchValue) {
-    if (!uniqueSearches.includes(searchValue)) {
-      uniqueSearches.push(searchValue);
-      localStorage.setItem('searches', JSON.stringify(uniqueSearches));
+
+    if (!uniqueSearches.includes(searchValue) && (uniqueSearches.length > 3)) {
+      uniqueSearches.shift();
     }
-  }
+    
+    if (!uniqueSearches.includes(searchValue)) {
+        uniqueSearches.push(searchValue);
+        localStorage.setItem('searches', JSON.stringify(uniqueSearches));
+    }
+}
 
 //function to retrieve and display last searches on the HTML
 function displayLastSearches() {
@@ -31,7 +36,6 @@ function displayLastSearches() {
         var p = document.createElement('p');
         p.textContent = uniqueSearches[i];
         p.addEventListener('click', performSearch);
-        p.classList.add('hovered');
         div.appendChild(p);
         $(p).attr('class', 'column is-narrow last-searches');
       
@@ -42,7 +46,7 @@ function displayLastSearches() {
     }
 }
 
-//function for li to click on
+//function for p to click on
   function performSearch(event) {
     var searchValue = event.target.textContent;
     $('#search-value').val(searchValue);
@@ -53,12 +57,11 @@ function callApi() {
 
     //save the search value before making the api call
     var cocktailName = $('#search-value').val();
-    saveSearch(cocktailName);
-
-    var cocktailName = $('#search-value').val();
     var urlgeo = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + cocktailName;
     var urlingredient = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + cocktailName;
     
+    saveSearch(cocktailName);
+
     drinkList = [];
     console.log(drinkList);
     displayLastSearches();
