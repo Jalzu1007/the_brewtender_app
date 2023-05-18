@@ -34,15 +34,8 @@ function displayLastSearches() {
         p.addEventListener('click', performSearch);
         p.classList.add('hovered');
         div.appendChild(p);
-        $(p).attr('class', 'column is-narrow');
+        $(p).attr('class', 'column is-narrow last-searches');
       
-        p.addEventListener('mouseover', function() {
-          this.classList.add('has-text-primary-dark');
-        });
-      
-        p.addEventListener('mouseout', function() {
-          this.classList.remove('has-text-primary-dark');
-        });
       }
     } else {
       var div = document.getElementById('last-searches');

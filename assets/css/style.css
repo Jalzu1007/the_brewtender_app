@@ -3,7 +3,7 @@
 }
 
 html, body {
-    height: 100%;
+    /*height: 100%;*/
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,12 +12,8 @@ html, body {
     height: 100vh;
 }
 
-body {
-    flex: 1;
-}
-
 header {
-    padding: 32px;
+    max-height: 190px;
 }
 
 .header-shadow {
@@ -30,8 +26,9 @@ header {
     background-color:  #7C2529;
 }
 
-#last-searches li:hover {
+.last-searches:hover {
     cursor: pointer;
+    color:#7C2529;
 }
 
 .footer {
