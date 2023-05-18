@@ -3,7 +3,6 @@
 }
 
 html, body {
-    /*height: 100%;*/
     margin: 0;
     padding: 0;
     display: flex;
@@ -24,6 +23,18 @@ header {
 
 #search-button {
     background-color:  #7C2529;
+    
+        margin-bottom: 40px; 
+      
+}
+
+.history {
+    margin-top: 40px; 
+    
+  }
+
+#jokes {
+    margin-top:50px;
 }
 
 .last-searches:hover {

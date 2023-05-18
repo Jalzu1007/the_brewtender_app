@@ -2,7 +2,6 @@
 var drinkList = [];
 var uniqueSearches = [];
 
-
 //function that displays the last searches when the page refreshes to the HTML
 $(document).ready(function() {
     displayLastSearches();
@@ -63,6 +62,7 @@ function callApi() {
     drinkList = [];
     console.log(drinkList);
     displayLastSearches();
+    fetchJoke();
 
     if ($("#checkbox").is(":checked")) {
         $.ajax(urlingredient).done(function (response) {
@@ -76,6 +76,7 @@ function callApi() {
             console.log(drinkList);
             //updates last search display from local storage
             listResults();
+            fetchJoke();
         });
     } else {
         $.ajax(urlgeo).done(function (response) {
@@ -91,9 +92,55 @@ function callApi() {
 
             //display last search results on search button click to the HTML
             displayLastSearches();
+            fetchJoke();
         });
     }
 }
+
+
+// Fetch and display a joke
+function fetchJoke() {
+    var jokeUrl = 'https://icanhazdadjoke.com/';
+  
+    fetch(jokeUrl, {
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch joke. Status: ' + response.status);
+        }
+        var contentType = response.headers.get('Content-Type');
+        if (!contentType || !contentType.includes('application/json')) {
+          throw new Error('Invalid joke response. Expected JSON.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Joke data:', data); 
+          var joke = data.joke;
+          console.log(joke);
+          displayJoke(joke);
+       
+      })
+      .catch(error => {
+        console.log('Failed to fetch joke:', error);
+      });
+  }
+  
+  function displayJoke(joke) {
+    var jokeDiv = document.getElementById('joke');
+    if (jokeDiv) {
+      jokeDiv.textContent = joke;
+    } else {
+      var jokeContainer = document.createElement('div');
+      jokeContainer.id = 'joke';
+      jokeContainer.textContent = joke;
+      document.body.appendChild(jokeContainer);
+    }
+  }
+  
 
 function listResults() {
 
