@@ -27,12 +27,13 @@ function displayLastSearches() {
       uniqueSearches = JSON.parse(searches);
   
       var div = document.getElementById('last-searches');
-      div.innerHTML = ''; // Clear existing content
-  
-      var count = Math.min(4, uniqueSearches.length); // Get the minimum value between 4 and the number of searches
+      div.innerHTML = ''; 
+
+      // Get the minimum value between 4 and the number of searches
+      var count = Math.min(4, uniqueSearches.length); 
     
-      // added hover color to text for latest searches
-      for (var i = uniqueSearches.length - 1; i >= uniqueSearches.length - count; i--) {
+    // added hover color to text for latest searches
+    for (var i = uniqueSearches.length - 1; i >= uniqueSearches.length - count; i--) {
         var p = document.createElement('p');
         p.textContent = uniqueSearches[i];
         p.addEventListener('click', performSearch);
@@ -40,18 +41,19 @@ function displayLastSearches() {
         $(p).attr('class', 'column is-narrow last-searches');
       
       }
+
     } else {
       var div = document.getElementById('last-searches');
-      div.innerHTML = ''; // Clear existing content
+      div.innerHTML = ''; 
     }
 }
 
 //function for p to click on
-  function performSearch(event) {
+function performSearch(event) {
     var searchValue = event.target.textContent;
     $('#search-value').val(searchValue);
     callApi();
-  }
+}
 
 function callApi() {
 
@@ -81,11 +83,13 @@ function callApi() {
             listResults();
             fetchJoke();
         });
+
     } else {
         $.ajax(urlgeo).done(function (response) {
             var apiResults  = response;
             
             for (i=0;i<apiResults.drinks.length; i++) {
+
                 if (i<10) {
                 drinkList.push(apiResults.drinks[i]);
                 }
@@ -130,23 +134,25 @@ function fetchJoke() {
       .catch(error => {
         console.log('Failed to fetch joke:', error);
       });
-  }
-  
-  function displayJoke(joke) {
+}
+
+//display joke on HTML
+function displayJoke(joke) {
     var jokeDiv = document.getElementById('joke');
+
     if (jokeDiv) {
       jokeDiv.textContent = joke;
+
     } else {
       var jokeContainer = document.createElement('div');
       jokeContainer.id = 'joke';
       jokeContainer.textContent = joke;
       document.body.appendChild(jokeContainer);
     }
-  }
+}
   
-
+//function to create the containers and displaying the drink recipe with image
 function listResults() {
-
     cleaning();
 
     for (x = 0; x < drinkList.length; x++) {
@@ -231,7 +237,8 @@ function listResults() {
 
         if ($("#checkbox").is(":checked")) {
             $('#ingredient-tile' + x).html('');
-        }   else {
+
+        } else {
             $('#ingredient-tile' + x).html('Ingredients');
         }
         var ul = document.createElement('ul');
@@ -239,9 +246,11 @@ function listResults() {
         $(ul).attr('class', 'column is-narrow is-multiline');
         $(ul).attr('id', 'ingredient-list' + x);
 
+        //check box ingredient
         if ($("#checkbox").is(":checked")) {
-            //No ingredients 
-        }   else {
+
+        
+        } else {
             ingredients.push(drinkList[x].strIngredient1);
             ingredients.push(drinkList[x].strIngredient2);
             ingredients.push(drinkList[x].strIngredient3);
@@ -268,7 +277,6 @@ function listResults() {
                 }
             }
 
-
             var p = document.createElement('p');
             $('#ingredients' + x).append(p);
             $(p).attr('id', 'instructions-steps' + x);
@@ -277,14 +285,16 @@ function listResults() {
     }
 }
 
+//function to remove from HTML 
 function cleaning() {
 
-        for (i=0; i<10; i++) {
-            var node = document.getElementById('box'+i);
-            if (node) {
-            node.remove();
-            }
-        }
-}
+    for (i=0; i<10; i++) {
+        var node = document.getElementById('box'+i);
 
+    if (node) {
+        node.remove();
+        }
+    }
+}
+//click event listener for search-button
 $('#search-button').on('click', callApi);

@@ -1,28 +1,10 @@
 # the_recipe_bar
 
-## User Story
-
-AS A bartender
-I WANT to be able to search for cocktail recipes by ingredient or name 
-SO THAT I can quickly find and serve the drinks my customers are looking for
-
-## Acceptance Criteria
-
-GIVEN a cocktail recipe application with search inputs,
-WHEN I search for a cocktail by name or ingredient,
-THEN I am presented with a list of matching recipes or the current ingredient given,
-WHEN I view the cocktail,
-THEN I am presented with the instructions to make the cocktail and image,
-WHEN I view the ingredient,
-THEN I am presented with details about the ingredient,
-WHEN I view the search history,
-THEN I am presented with a list of saved cocktails and ingredients from previous searches
-
 ## Description
 
-This project is a Cocktail Recipe Application its a tool that helps the user search for cocktail recipes by name or ingredient. The application provides a list of matching recipes, including instructions and an image of the drink. It also provides details about the searched ingredient and a search history feature that allows users to view a list of saved cocktails and ingredients from previous searches.
+This project is a Cocktail Recipe Application and it’s a tool that helps the user search for cocktail recipes by name or ingredient while providing jokes for entertainment. The application provides a list of matching recipes, including instructions and an image of the drink. It also provides details about the searched ingredient and a search history feature that allows users to view a list of saved cocktails and ingredients from previous searches.
 
-The motivation behind this project is to provide the users with a tool that makes it easy and quick to find and serve cocktails. The application solves the problem of spending too much time searching for cocktail recipes by name or ingredient, allowing users to serve their customers faster and more efficiently for an overall customer satisfaction.
+Our motivation is to create a functional webpage, to showcase our skills to employers. The motivation behind the project is to provide the users with a tool that makes it easy and quick to find and serve cocktails and provide jokes for humor. The application solves the problem of spending too much time searching for cocktail recipes by the name or ingredient, allowing users to serve their customers faster and more efficiently for an overall customer experience.
 
 Through building this project, us developers can learn how to create a web application that is responsive and have a polished user interface using Bulma a CSS framework. It also allows users to search for data, display information, and store user data. We can also learn how to use APIs to retrieve data and integrate it into the application. 
 
@@ -39,11 +21,11 @@ To install The Recipe Bar Application, follow these steps:
 
 1. Clone the repository on your local machine using the following command:
 
-git clone 
+git clone https://github.com/Jalzu1007/the_recipe_bar.git
 
 2. Navigate to the repository's directory using the command:
 
- cd 
+ cd the_recipe_bar
 
 3. Open the index.html file in a web browser.
 
@@ -52,20 +34,22 @@ git clone
 To use the The Recipe Bar Application, follow these steps:
 
 1. Open The Recipe Bar Application on your web browser
-2. Use the search bar to search for a cocktail by name or ingredient
-3. The application will display a list of matching recipes
-4. Click on a recipe to view the instructions and image of the drink
-5. If you want to know more about the searched ingredient, click on the ingredient name to view its details
-6. To view your search history, click on the history button
-7. The application will display a list of saved cocktails and ingredients from previous searches
+2. Use the search bar to search for a cocktail by name or ingredient when the checkbox is clicked.
+3. The application will display a list of matching cocktail recipes, specific cocktail ingredients, and a bar joke.
+4. When you view the searched cocktail an image of the cocktail of choice will appear with the recipe.
+5. When you search for an ingredient the cocktail drinks will appear that have that specific ingredient with an image to view.
+6. A random bar joke will show on screen every time you search for a cocktail or ingredient.
+7. To view your search history, click on the last search history of cocktails that show on screen
+8. The application will display a list of the last four saved cocktails and ingredients from previous searches.
+9. Once clicked on your last search it will display your request on screen.
 
 Deployed website:
 
+https://jalzu1007.github.io/the_recipe_bar/
 
+Screen-share video of the The Recipe Bar Application:
 
-Screenshot of the The Recipe Bar Application:
-
-![alt text](./assets/images) ![alt text](./assets/images) ![alt text](./assets/images) 
+[![Video Title](https://img.youtube.com/vi/eqVok_eBs3k/0.jpg)](https://www.youtube.com/watch?v=eqVok_eBs3k)
 
 ## Credits
 
@@ -86,6 +70,7 @@ I used the following third-party assets in this project:
 - https://www.flaticon.com/
 - https://punkapi.com/documentation/v2
 - https://www.thecocktaildb.com/api.php
+- https://icanhazdadjoke.com/ap
 - https://fonts.google.com/?preview.text=Weather%20Dashboard&preview.text_type=custom
 - https://jqueryui.com/
 - https://bulma.io/
