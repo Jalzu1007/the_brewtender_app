@@ -69,6 +69,7 @@ function callApi() {
     drinkList = [];
     console.log(drinkList);
     displayLastSearches();
+    fetchJoke();
 
     if ($("#checkbox").is(":checked")) {
         $.ajax(urlingredient).done(function (response) {
@@ -106,38 +107,44 @@ function callApi() {
 
 // Fetch and display a joke
 function fetchJoke() {
-    var jokeUrl = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single';
+    var jokeUrl = 'https://icanhazdadjoke.com/';
   
-    fetch(jokeUrl)
-      .then(response => response.json())
+    fetch(jokeUrl, {
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch joke. Status: ' + response.status);
+        }
+        var contentType = response.headers.get('Content-Type');
+        if (!contentType || !contentType.includes('application/json')) {
+          throw new Error('Invalid joke response. Expected JSON.');
+        }
+        return response.json();
+      })
       .then(data => {
-        
-        if (data.type === 'single') {
-          const joke = data.joke;
+        console.log('Joke data:', data); 
+          var joke = data.joke;
           console.log(joke);
           displayJoke(joke);
        
-        } else {
-          const setup = data.setup;
-          const delivery = data.delivery;
-          console.log(setup);
-          console.log(delivery);
-          displayJoke(setup + ' ' + delivery);
-        }
       })
-      
       .catch(error => {
         console.log('Failed to fetch joke:', error);
       });
   }
   
-  // Display the joke on the page
   function displayJoke(joke) {
     var jokeDiv = document.getElementById('joke');
     if (jokeDiv) {
       jokeDiv.textContent = joke;
     } else {
-      console.error('Failed to find joke element');
+      var jokeContainer = document.createElement('div');
+      jokeContainer.id = 'joke';
+      jokeContainer.textContent = joke;
+      document.body.appendChild(jokeContainer);
     }
   }
   
