@@ -2,7 +2,6 @@
 var drinkList = [];
 var uniqueSearches = [];
 
-
 //function that displays the last searches when the page refreshes to the HTML
 $(document).ready(function() {
     displayLastSearches();
@@ -83,6 +82,7 @@ function callApi() {
             console.log(drinkList);
             //updates last search display from local storage
             listResults();
+            fetchJoke();
         });
     } else {
         $.ajax(urlgeo).done(function (response) {
@@ -98,9 +98,49 @@ function callApi() {
 
             //display last search results on search button click to the HTML
             displayLastSearches();
+            fetchJoke();
         });
     }
 }
+
+
+// Fetch and display a joke
+function fetchJoke() {
+    var jokeUrl = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single';
+  
+    fetch(jokeUrl)
+      .then(response => response.json())
+      .then(data => {
+        
+        if (data.type === 'single') {
+          const joke = data.joke;
+          console.log(joke);
+          displayJoke(joke);
+       
+        } else {
+          const setup = data.setup;
+          const delivery = data.delivery;
+          console.log(setup);
+          console.log(delivery);
+          displayJoke(setup + ' ' + delivery);
+        }
+      })
+      
+      .catch(error => {
+        console.log('Failed to fetch joke:', error);
+      });
+  }
+  
+  // Display the joke on the page
+  function displayJoke(joke) {
+    var jokeDiv = document.getElementById('joke');
+    if (jokeDiv) {
+      jokeDiv.textContent = joke;
+    } else {
+      console.error('Failed to find joke element');
+    }
+  }
+  
 
 function listResults() {
 
